@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilter from "@/components/filter/HomeFilter";
 import LocalSearch from "@/components/Search/LocalSearch";
 import { Button } from "@/components/ui/button";
@@ -21,18 +22,32 @@ const questions = [
         name: "CNN model",
       },
     ],
-    author: { _id: "1", name: "Tuan Nghia" },
-    upvote: 100,
+    author: {
+      _id: "1",
+      name: "Tuan Nghia",
+      image:
+        "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?semt=ais_hybrid",
+    },
+    upvotes: 100,
     answers: 5,
+    createdAt: new Date(),
+    views: 100,
   },
   {
     _id: "2",
     title: "Need help for SetTimeOut in NextJS",
     description: "I try to use SetTimeOut in NextJS",
-    tags: [{ _id: "1", name: "NextJS" }],
-    author: { _id: "1", name: "Tuan Nghia" },
-    upvote: 100,
+    tags: [{ _id: "1", name: "nextjs" }],
+    author: {
+      _id: "1",
+      name: "Tuan Nghia",
+      image:
+        "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?semt=ais_hybrid",
+    },
+    upvotes: 100,
     answers: 5,
+    createdAt: new Date(),
+    views: 100,
   },
 ];
 
@@ -72,7 +87,7 @@ const Home = async ({ searchParams }: SearchParams) => {
       <HomeFilter />
       <div className="mt-10 flex w-full flex-col gap-6">
         {filteredQuestions.map((question) => (
-          <h1 key={question._id}>{question.title}</h1>
+          <QuestionCard key={question._id} question={question} />
         ))}
       </div>
     </>
