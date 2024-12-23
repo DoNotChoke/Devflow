@@ -50,7 +50,6 @@ const questions = [
     views: 100,
   },
 ];
-
 interface SearchParams {
   searchParams: Promise<{ [key: string]: string }>;
 }
