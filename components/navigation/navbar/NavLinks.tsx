@@ -9,9 +9,14 @@ import { SheetClose } from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
 import { cn } from "@/lib/utils";
 
-const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
+const NavLinks = ({
+  isMobileNav = false,
+  userId,
+}: {
+  isMobileNav?: boolean;
+  userId?: string;
+}) => {
   const pathName = usePathname();
-  const userId = 1;
   return (
     <>
       {sidebarLinks.map((item) => {
@@ -51,7 +56,9 @@ const NavLinks = ({ isMobileNav = false }: { isMobileNav?: boolean }) => {
           </Link>
         );
         return isMobileNav ? (
-          <SheetClose asChild>{linkComponent}</SheetClose>
+          <SheetClose asChild key={item.route}>
+            {linkComponent}
+          </SheetClose>
         ) : (
           <React.Fragment key={item.route}>{linkComponent}</React.Fragment>
         );

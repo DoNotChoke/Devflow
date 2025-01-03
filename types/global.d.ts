@@ -1,14 +1,14 @@
-import { boolean } from "zod";
-
 interface Tag {
   _id: string;
   name: string;
 }
+
 interface Author {
   _id: string;
   name: string;
   image: string;
 }
+
 interface Question {
   _id: string;
   title: string;
@@ -26,12 +26,13 @@ type ActionResponse<T = null> = {
   data?: T;
   error?: {
     message: string;
-    details: Record<string, string[]>;
+    details?: Record<string, string[]>;
   };
-  status: number;
+  status?: number;
 };
 
 type SuccessResponse<T = null> = ActionResponse<T> & { success: true };
-type ErrorReponse = ActionResponse<undefined> & { success: false };
-type APIErrorResponse = NextResponse<ErrorReponse>;
-type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorReponse>;
+type ErrorResponse = ActionResponse<undefined> & { success: false };
+
+type APIErrorResponse = NextResponse<ErrorResponse>;
+type APIResponse<T = null> = NextResponse<SuccessResponse<T> | ErrorResponse>;
