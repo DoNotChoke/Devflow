@@ -11,7 +11,7 @@ export interface IQuestion {
   answer: number;
 }
 
-export interface IAccountDoc extends IQuestion, Document {}
+export interface IQuestionDoc extends IQuestion, Document {}
 const QuestionSchema: Schema = new Schema<IQuestion>(
   {
     title: { type: String, required: true },
