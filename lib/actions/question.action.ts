@@ -226,9 +226,11 @@ export async function getQuestions(
   const { page = 1, pageSize = 10, query, filter } = params;
   const skip = (Number(page) - 1) * pageSize;
   const limit = Number(pageSize);
+
   const filterQuery: FilterQuery<typeof Question> = {};
-  if (filter === "recommended")
-    return { success: true, data: { questions: [], isNext: false } }; // just skip it for future implement
+  if (filter === "recommended") {
+    return { success: true, data: { questions: [], isNext: false } }; // just skip it for now
+  }
   if (query) {
     filterQuery.$or = [
       { title: { $regex: new RegExp(query, "i") } },
@@ -256,12 +258,11 @@ export async function getQuestions(
     const questions = await Question.find(filterQuery)
       .populate("tags", "name")
       .populate("author", "name image")
-      .lean()
+      .lean() // lean to convert mongoDB docs into a plain JS object => easier to work with
       .sort(sortCriteria)
       .skip(skip)
       .limit(limit);
     const isNext = totalQuestions > skip + questions.length;
-
     return {
       success: true,
       data: { questions: JSON.parse(JSON.stringify(questions)), isNext },

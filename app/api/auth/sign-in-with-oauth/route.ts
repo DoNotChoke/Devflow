@@ -7,7 +7,7 @@ import User from "@/database/user.model";
 import handleError from "@/lib/handlers/error";
 import { ValidationError } from "@/lib/http-errors";
 import dbConnect from "@/lib/mongoose";
-import { OAuthSchema } from "@/lib/validation";
+import { SignInWithOAuthSchema } from "@/lib/validation";
 
 export async function POST(request: Request) {
   const { provider, providerAccountId, user } = await request.json();
@@ -15,7 +15,7 @@ export async function POST(request: Request) {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
-    const validatedData = OAuthSchema.safeParse({
+    const validatedData = SignInWithOAuthSchema.safeParse({
       provider,
       providerAccountId,
       user,
