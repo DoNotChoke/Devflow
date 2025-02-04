@@ -72,8 +72,8 @@ const LocalSearch = ({
         <Image
           src={imgSrc}
           alt="search"
-          width={24}
-          height={24}
+          width={15}
+          height={15}
           className="cursor-pointer"
         />
       )}

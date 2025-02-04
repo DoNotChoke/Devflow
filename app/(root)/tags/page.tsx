@@ -18,12 +18,12 @@ const Tags = async ({ searchParams }: RouteParams) => {
   const { tags } = data || {};
   return (
     <>
-      <h1 className="h1-bold text-light100_dark900 text-3xl">Tags</h1>
-      <section className="mt-10">
+      <h1 className="h1-bold text-dark100_light900 text-3xl">Tags</h1>
+      <section>
         <LocalSearch
           route={ROUTES.TAGS}
           imgSrc="/icons/search.svg"
-          placeholder="Search tags..."
+          placeholder="Search tag name..."
           otherClasses="flex-1"
         />
       </section>
